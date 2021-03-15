@@ -1,5 +1,6 @@
 import sys
 
+
 def get_info(file):
     with open(file) as inp:
         with open('employees.tsv', 'w') as out:
@@ -8,7 +9,6 @@ def get_info(file):
                 tmp, mail = i.split('@')
                 name, surname = tmp.split('.')
                 out.write(f'{name.capitalize()}\t{surname.capitalize()}\t{i.strip()}\n')
-
 
 
 if __name__ == '__main__':
