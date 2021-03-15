@@ -1,6 +1,5 @@
 def data_types():
-    # int, str, float, bool, list, dict, tuple, set]
-    var = [0, '', 0.0, False, list(), {}, (0, 0), set()]
+    var = [0, '', 0.0, False, [], {'a':'b'}, (0, 0), {'a', 'b'}]
     print('[', ', '.join([type(i).__name__ for i in var]), ']', sep='')
 
 

@@ -1,4 +1,4 @@
-def to_dictionary():
+def sort():
     list_of_tuples = [
         ('Russia', '25'),
         ('France', '132'),
@@ -21,18 +21,10 @@ def to_dictionary():
         ('Austria', '14'),
         ('Israel', '12')
     ]
-
-    dict_ = dict()
-    for value, key in list_of_tuples:
-        if key in dict_:
-            dict_[key].append(value)
-        else:
-            dict_[key] = [value]
-
-    for key, values in dict_.items():
-        for value in values:
-            print("'" + key + "' : '" + value + "'")
+    countries = dict(list_of_tuples)
+    return sorted(countries, key=lambda x: (-int(countries[x]), x))
 
 
 if __name__ == '__main__':
-    to_dictionary()
+    for i in sort():
+        print(i)
