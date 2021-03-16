@@ -19,15 +19,15 @@ def get_recipients():
 
 
 def call_center():
-    return sorted(list(get_clients() - get_recipients()))
+    return list(get_clients() - get_recipients())
 
 
 def potential_clients():
-    return sorted(list(get_participants() - get_clients()))
+    return list(get_participants() - get_clients())
 
 
 def loyalty_program():
-    return sorted(list(get_clients() - get_participants())) # sorting?
+    return list(get_clients() - get_participants())
 
 
 def marketing(task):
@@ -37,7 +37,7 @@ def marketing(task):
         return potential_clients()
     if task == 'loyalty_program':
         return loyalty_program()
-    raise ValueError('invalid command')
+    raise Exception('invalid command')
 
 
 if __name__ == '__main__':
@@ -45,3 +45,5 @@ if __name__ == '__main__':
         result = marketing(sys.argv[1])
         for i in result:
             print(i)
+    elif len(sys.argv) > 2:
+        raise Exception('invalid command')

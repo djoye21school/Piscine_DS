@@ -17,7 +17,6 @@ def stock_prices(ticker):
         'NOK': 3.37
     }
     tickers = {v: k for k, v in companies.items()}
-
     if ticker in tickers:
         return f'{tickers[ticker]} {stocks[ticker]}'
     return 'Unknown ticker'

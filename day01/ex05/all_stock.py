@@ -33,6 +33,7 @@ def get_info(argv):
     for i in arr:
         print(stock_info(i))
 
+
 if __name__ == '__main__':
     if len(sys.argv) == 2:
         get_info(sys.argv[1])

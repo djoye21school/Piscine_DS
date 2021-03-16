@@ -5,7 +5,7 @@ def encode(string, shift):
     try:
         string.encode('ascii')
     except UnicodeEncodeError:
-        raise ValueError("the string contains more than just ascii")
+        raise Exception("The script does not support your language yet.")
 
     lower = [chr(i) for i in range(ord('a'), ord('z') + 1)]
     upper = [chr(i) for i in range(ord('A'), ord('Z') + 1)]
@@ -29,4 +29,4 @@ if __name__ == '__main__':
         else:
             print('incorrect operation or option')
     else:
-        print('invalid number of arguments', len(sys.argv))
+        print('invalid number of arguments')

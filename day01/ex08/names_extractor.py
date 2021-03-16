@@ -6,8 +6,7 @@ def get_info(file):
         with open('employees.tsv', 'w') as out:
             out.write('Name\tSurname\tE-mail\n')
             for i in inp.readlines():
-                tmp, mail = i.split('@')
-                name, surname = tmp.split('.')
+                name, surname = i.split('@')[0].split('.')
                 out.write(f'{name.capitalize()}\t{surname.capitalize()}\t{i.strip()}\n')
 
 
