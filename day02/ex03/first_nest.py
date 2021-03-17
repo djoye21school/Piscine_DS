@@ -38,7 +38,8 @@ class Research:
             return [sum(x), sum(y)]
 
         def fractions(self):
-            return [self.count[0] / len(self.data), self.count[1] / len(self.data)]
+            return [self.count[0] / len(self.data) * 100,
+                    self.count[1] / len(self.data) * 100]
 
 
 if __name__ == '__main__':
@@ -46,4 +47,4 @@ if __name__ == '__main__':
         research = Research(sys.argv[1])
         print(research.file_greader())
         print(' '.join([str(i) for i in research.calculations.count]))
-        print(' '.join([str(i*100) for i in research.calculations.fraction]))
+        print(' '.join([str(i) for i in research.calculations.fraction]))

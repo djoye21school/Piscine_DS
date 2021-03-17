@@ -1,4 +1,4 @@
-import sys
+import os
 from random import randint
 
 
@@ -38,7 +38,8 @@ class Research:
             return [sum(x), sum(y)]
 
         def fractions(self):
-            return [self.count[0] / len(self.data) * 100, self.count[1] / len(self.data) * 100]
+            return [self.count[0] / len(self.data) * 100,
+                    self.count[1] / len(self.data) * 100]
 
     class Analytics(Calculations):
 

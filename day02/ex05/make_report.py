@@ -1,20 +1,24 @@
 from config import *
 from analytics import Research
 
+
 def main():
-    research = Research(path)
-    print(research.file_greader())
-    print())
-    print())
-    print(research.calculations.predict_random(3))
-    print(research.calculations.predict_last())
+    research = Research(data)
+    heads, tails = research.calculations.count
+    prob1, prob2 = research.calculations.fraction
+    predict = research.calculations.predict_random(num_of_steps)
+    predict_tails = [i[0] for i in predict]
+    predict_heads = [i[1] for i in predict]
 
-    template.format(
-        1,
-        ' '.join([str(i) for i in research.calculations.count],
-        ' '.join([str(i) for i in research.calculations.fraction],
-        4,
-        5, 9,
-    )
-    research.calculate.save
+    text = template.format(
+        len(research.file_greader()),
+        tails, heads,
+        prob1, prob2,
+        num_of_steps,
+        sum(predict_tails), sum(predict_heads)
+        )
+    research.calculations.save_file(text, report)
 
+
+if __name__ == '__main__':
+    main()
