@@ -2,44 +2,37 @@ import sys
 from bs4 import BeautifulSoup
 import requests
 import time
-import pandas as pd
 
 
-def get_info(ticker, parameter):
+def get_row(table):
+    soup = BeautifulSoup(str(table), "lxml")
+    div_list = soup.find_all("div", {"data-test": "fin-col"})
+    return [i.text for i in div_list]
+
+
+def get_title(table):
+    soup = BeautifulSoup(str(table), "lxml")
+    title_list = soup.find_all("span", {"class": "Va(m)"})
+    return [i.text for i in title_list]
+
+
+def get_table(ticker, parameter):
     url = f'https://finance.yahoo.com/quote/{ticker}/financials?p= {ticker}'
     data = requests.get(url).text
+    time.sleep(5)
     soup = BeautifulSoup(data, "lxml")
-    table = soup.find_all("div", {"data-test": "fin-row"})
-    result = []
-    soup = BeautifulSoup(str(table[0]), "lxml")
-    div_list = soup.find_all("div", {"data-test": "fin-col"})
-    titles = div_list = soup.find_all("div", {"data-test": "fin-col"})
-    return div_list
-    for div in div_list:
-        #if parameter in row:
-        if 'title' in div:
-            print(div['title'])
-        #print(div)
-    return
-    return result
-    return table[0]['title']
-    return table[-1]
-    '''
-    return result
-    subdata = BeautifulSoup(table, "lxml")
-    #columns = soup.find_all("div", {"data-test": "fin-col"})
-    columns = soup.find_all("span")
-
-    return columns
-    return table[0]
-    #return soup
-    '''
-    df = pd.read_html(str(table), header=0)[0]
-    return df
+    rows = soup.find_all("div", {"data-test": "fin-row"})
+    titles = get_title(rows)
+    if len(titles) == 0:
+        raise Exception(f'{ticker} not found')
+    if parameter in titles:
+        idx = titles.index(parameter)
+        return tuple([parameter] + get_row(rows[idx]))
+    raise Exception(f'{parameter} not found')
 
 
 if __name__ == '__main__':
     if len(sys.argv) == 3:
-        print(get_info(sys.argv[1].upper(), sys.argv[2]))
+        print(get_table(sys.argv[1].upper(), sys.argv[2]))
     else:
         raise Exception('requested field does not exist')
