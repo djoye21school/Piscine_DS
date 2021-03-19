@@ -57,5 +57,5 @@ if __name__ == '__main__':
         print(research.file_greader())
         print(' '.join([str(i) for i in research.calculations.count]))
         print(' '.join([str(i) for i in research.calculations.fraction]))
-        print(research.calculations.predict_random(3))
+        print(research.calculations.predict_random(-1))
         print(research.calculations.predict_last())
